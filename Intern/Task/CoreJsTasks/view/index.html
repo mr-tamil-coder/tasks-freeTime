@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>useSearch in JS</title>
+  <link rel="stylesheet" type="text/css" href="../styles/style.css">
+</head>
+<body>
+
+  <div class="filters ">
+    <label>
+      Name:
+     <input id="searchInput" class="nav-btn" placeholder="Search name..." />
+
+    </label>
+    <label>
+      Location:
+      <select id="locationFilter" class="nav-btn">
+        <option value="All">All</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Bangalore">Bangalore</option>
+        <option value="Coimbatore">Coimbatore</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Hyderabad">Hyderabad</option>
+        <option value="Pune">Pune</option>
+        <option value="Madurai">Madurai</option>
+        <option value="Trichy">Trichy</option>
+      </select>
+    </label>
+
+    <label>
+      Age Range:
+      <select id="ageFilter" class="nav-btn">
+        <option value="All">All</option>
+        <option value="20-25">20-25</option>
+        <option value="26-30">26-30</option>
+        <option value="31-35">31-35</option>
+        <option value="36-40">36-40</option>
+        <option value="41-45">41-45</option>
+      </select>
+    </label>
+  </div>
+
+ 
+  <table id="userTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody id="result">
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button id="prevBtn">Previous</button>
+    <span id="pageInfo">Page 1 of 1</span>
+    <button id="nextBtn">Next</button>
+  </div>
+  
+  <div id="itemsInfo">Showing 0-0 of 0 users</div>
+
+  <script type="module" src="../controller/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #FACC15; /* Yellow */
+  --font-sans: "Inter", "sans-serif";
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  @apply font-sans antialiased text-gray-900 bg-white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  scroll-margin-top: 100px;
+}
