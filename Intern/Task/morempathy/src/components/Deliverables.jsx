@@ -8,35 +8,37 @@ const Deliverables = () => {
     {
       title: "System Requirements & Process Flows Documentation",
       desc: "Clear, structured documentation for smooth collaboration and team alignment.",
-      imgBg: "bg-blue-50",
+      imgBg: "./deliverables/1.png",
     },
     {
       title: "Project Plan with MVP Roadmap & Phased Launch",
       desc: "A comprehensive roadmap to prioritize features and ensure a smooth product launch.",
-      imgBg: "bg-orange-50",
+      imgBg: "./deliverables/2.png",
     },
     {
       title: "Strategic Clarity & Actionable Insights",
       desc: "Key insights and strategies to guide your development with confidence and focus.",
-      imgBg: "bg-purple-50",
+      imgBg: "./deliverables/3.png",
     },
     {
       title: "Technical Architecture & Scalability Blueprint",
       desc: "Robust technical foundation designed for growth and long-term success.",
-      imgBg: "bg-green-50",
+      imgBg: "./deliverables/1.png",
     },
     {
       title: "User Experience & Design System",
       desc: "Intuitive interfaces and consistent design patterns for exceptional user engagement.",
-      imgBg: "bg-pink-50",
+      imgBg: "./deliverables/2.png",
     },
   ];
 
   const handlePrev = () => {
+    if (currentIndex === 0) return;
     setCurrentIndex((prev) => (prev === 0 ? cards.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
+    if (currentIndex === cards.length - 1) return;
     setCurrentIndex((prev) => (prev === cards.length - 1 ? 0 : prev + 1));
   };
 
@@ -62,7 +64,6 @@ const Deliverables = () => {
           execution, ensuring seamless development and growth.
         </p>
 
-        {/* Desktop View - 3 cards grid */}
         <div className="hidden md:grid md:grid-cols-3 gap-6 mb-8">
           {visibleCards.map((card, i) => (
             <div
@@ -76,18 +77,17 @@ const Deliverables = () => {
                 {card.desc}
               </p>
 
-              <div
-                className={`w-full aspect-[4/3] ${card.imgBg} rounded-2xl overflow-hidden relative shadow-sm`}
-              >
-                <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm font-medium">
-                  Visual Representation
-                </div>
+              <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative shadow-sm">
+                <img
+                  src={card.imgBg}
+                  alt={card.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           ))}
         </div>
 
-        {/* Mobile View - 1 card */}
         <div className="md:hidden mb-8">
           <div className="border border-gray-200 rounded-3xl p-6 hover:shadow-xl transition-all duration-300 bg-white">
             <h3 className="font-bold text-lg mb-3 leading-tight">
@@ -97,51 +97,37 @@ const Deliverables = () => {
               {visibleCards[0].desc}
             </p>
 
-            <div
-              className={`w-full aspect-[4/3] ${visibleCards[0].imgBg} rounded-2xl overflow-hidden relative shadow-sm`}
-            >
-              <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm font-medium">
-                Visual Representation
-              </div>
+            <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative shadow-sm">
+              <img
+                src={visibleCards[0].imgBg}
+                alt={visibleCards[0].title}
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
 
-        {/* Carousel Controls */}
         <div className="flex items-center justify-end gap-3">
-          <span className="text-sm text-gray-500 mr-2">
-            {currentIndex + 1} / {cards.length}
-          </span>
           <button
             onClick={handlePrev}
-            className="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 active:scale-95"
+            className={`w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 active:scale-95 ${
+              currentIndex === 0 ? "opacity-50 cursor-not-allowed" : ""
+            }`}
             aria-label="Previous slide"
           >
             <ChevronLeft className="w-5 h-5 text-gray-700" />
           </button>
           <button
             onClick={handleNext}
-            className="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 active:scale-95"
+            className={`w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 active:scale-95 ${
+              currentIndex === cards.length - 1
+                ? "opacity-50 cursor-not-allowed"
+                : ""
+            }`}
             aria-label="Next slide"
           >
             <ChevronRight className="w-5 h-5 text-gray-700" />
           </button>
-        </div>
-
-        {/* Progress Dots */}
-        <div className="flex justify-center gap-2 mt-6">
-          {cards.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex
-                  ? "w-8 bg-gray-800"
-                  : "w-2 bg-gray-300 hover:bg-gray-400"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
         </div>
       </div>
     </section>

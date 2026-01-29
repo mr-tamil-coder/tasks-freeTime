@@ -1,87 +1,148 @@
-import React from 'react';
-import { Heart } from 'lucide-react';
+import React, { useState } from 'react';
 
-const Contact = () => {
-    return (
-        <section id="contact" className="bg-white pt-24 pb-0 relative overflow-hidden">
-             <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-20">
-                
-                {/* Left Text */}
-                <div className="w-full md:w-1/3 pt-10">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-3 leading-tight">Questions? Ideas?</h2>
-                    <h3 className="text-xl text-gray-600 mb-8 font-medium">Let's Connect!</h3>
-                    <p className="text-sm text-gray-500 mb-3 leading-relaxed">
-                        If you're looking to collaborate or need more details, drop us a message and we'll connect with you.
-                    </p>
-                    <p className="text-xs text-black font-semibold">
-                        Reach out, and let's build a plan that delivers measurable impact.
-                    </p>
-                </div>
+export default function ContactForm() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
 
-                {/* Right Form */}
-                <div className="w-full md:w-2/3">
-                     <form className="flex flex-col gap-6">
-                        <div className="relative border-b border-gray-200">
-                             <input type="text" placeholder="First Name *" className="w-full py-3 outline-none text-sm placeholder-gray-800" />
-                        </div>
-                        <div className="relative border-b border-gray-200">
-                             <input type="text" placeholder="Last Name *" className="w-full py-3 outline-none text-sm placeholder-gray-800" />
-                        </div>
-                        <div className="relative border-b border-gray-200">
-                             <input type="email" placeholder="Email *" className="w-full py-3 outline-none text-sm placeholder-gray-800" />
-                        </div>
-                         <div className="relative border-b border-gray-200">
-                             <input type="tel" placeholder="Phone Number *" className="w-full py-3 outline-none text-sm placeholder-gray-800" />
-                        </div>
-                        <div className="relative border-b border-gray-200">
-                             <textarea placeholder="Write Your Message Here *" className="w-full py-3 outline-none text-sm placeholder-gray-800 resize-none h-24"></textarea>
-                        </div>
-                        
-                        <div className="flex justify-end gap-4 mt-4">
-                            <button type="button" className="px-8 py-2 border border-gray-300 rounded-full text-xs font-semibold hover:bg-gray-50 transition-colors">
-                                Cancel
-                            </button>
-                            <button type="button" className="px-8 py-2 bg-transparent border border-primary text-black rounded-full text-xs font-semibold hover:bg-primary transition-colors flex items-center gap-2 shadow-[4px_4px_0px_#FACC15]">
-                                Submit Now
-                                <Heart className="w-3 h-3 fill-black text-black" />
-                            </button>
-                        </div>
-                     </form>
-                </div>
-             </div>
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
-             {/* Mega Footer Background Text */}
-             <div className="w-full bg-[#1A1A1A] mt-20 pt-16 pb-8 relative overflow-hidden">
-                 {/* Huge Ghost Text */}
-                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10 select-none">
-                     <span className="text-[15vw] font-bold text-white tracking-widest leading-none whitespace-nowrap">
-                         morempathy
-                     </span>
-                 </div>
-                 
-                 {/* Footer Links (Overriding previous simple footer) */}
-                 <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center">
-                      <div className="text-primary font-bold text-2xl mb-8">morempathy.</div>
-                      <div className="flex gap-8 text-xs text-gray-400 mb-8 uppercase tracking-widest">
-                          <a href="#" className="hover:text-primary transition-colors">About Us</a>
-                          <a href="#" className="hover:text-primary transition-colors">Our Services</a>
-                      </div>
-                      <div className="flex gap-4 mb-16">
-                          {['X', 'in', 'IG'].map((icon, i) => (
-                              <div key={i} className="w-8 h-8 border border-gray-600 rounded-full flex items-center justify-center text-gray-400 hover:border-primary hover:text-primary transition-colors cursor-pointer">
-                                  <span className="text-[10px]">{icon}</span>
-                              </div>
-                          ))}
-                      </div>
-                      
-                      <div className="w-full flex justify-between text-[10px] text-gray-600 border-t border-gray-800 pt-6">
-                          <span>© 2024 MoreEmpathy. All rights reserved.</span>
-                          <span>Privacy Policy | Terms of Service</span>
-                      </div>
-                 </div>
-             </div>
-        </section>
-    );
-};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+  };
 
-export default Contact;
+  const handleCancel = () => {
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      message: ''
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 p-8">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+        <div className="space-y-6">
+          <h1 className="text-5xl font-bold text-gray-900">
+            Questions? Ideas?
+          </h1>
+          <h2 className="text-2xl font-semibold text-gray-900">
+            Let's Connect!
+          </h2>
+          <p className="text-gray-600 text-lg">
+            If you're looking to collaborate or need more details, drop us a message and we'll connect with you.
+          </p>
+          <p className="text-gray-900 font-semibold">
+            Reach out, and let's build a plan that delivers measurable impact.
+          </p>
+        </div>
+
+        <div className="bg-white rounded-lg shadow-sm p-8">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">
+                First Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none transition"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">
+                Last Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none transition"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">
+                Email <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none transition"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">
+                Phone Number <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none transition"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">
+                Write Your Message Here <span className="text-red-500">*</span>
+              </label>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                maxLength={300}
+                rows={4}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none transition resize-none"
+              />
+              <div className="text-right text-sm text-gray-500 mt-1">
+                {formData.message.length}/300
+              </div>
+            </div>
+            <div className="flex gap-4 pt-4">
+              <button
+                type="button"
+                onClick={handleCancel}
+                className="flex-1 px-6 py-3 border-2 border-yellow-400 text-gray-900 font-semibold rounded-full hover:bg-yellow-50 transition"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="flex-1 px-6 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-full hover:bg-yellow-500 transition flex items-center justify-center gap-2"
+              >
+                Submit Now
+                <span className="text-xl">👍</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}

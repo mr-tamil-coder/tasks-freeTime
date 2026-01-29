@@ -24,8 +24,6 @@ const DisplayData = ({ users, totalPages, currentPage, handlePageChange }) => {
       </div>
 
       <div >
-      
-
         <div >
             <button
           onClick={() => handlePageChange(currentPage - 1)}

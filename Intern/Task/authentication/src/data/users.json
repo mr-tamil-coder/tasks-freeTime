@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "name": "Vinoth",
+    "email": "vinoth@gmail.com",
+    "password": "vinoth@gmail.com",
+    "phone": "9829183921912",
+    "role": "Developer",
+    "avatar": "https://ui-avatars.com/api/?name=Vinoth&background=0D8ABC&color=fff",
+    "address": "Chennai",   
+    "joinedDate": "2026-01-22"
+  }
+]

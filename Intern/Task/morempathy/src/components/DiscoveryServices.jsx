@@ -40,13 +40,8 @@ const DiscoveryServices = () => {
                 </div>
 
                 {/* Right Image Card */}
-                <div className="w-full md:w-1/2 relative bg-primary rounded-[3rem] p-8 h-[450px]">
-                    <div className="absolute top-8 right-8 bottom-8 left-8 bg-black/5 rounded-[2rem] overflow-hidden">
-                        {/* Placeholder for Meeting Image */}
-                         <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
-                            [Meeting Image Placeholder]
-                         </div>
-                    </div>
+                <div>
+                   <img src="./design.png" alt="" />
                 </div>
             </div>
         </section>
