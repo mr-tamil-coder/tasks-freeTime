@@ -25,6 +25,7 @@ const Products = () => {
   const [sortBy, setSortBy] = useState("title");
   const [sortOrder, setSortOrder] = useState("asc");
   const [searchQuery, setSearchQuery] = useState("");
+  const [goToPage, setGoToPage] = useState("");
 
   // Pass all values as parameters so this function NEVER reads stale state
   const fetchProducts = async (page, category, sort, order, query) => {
@@ -92,6 +93,17 @@ const Products = () => {
       } catch (err) {
         alert("Failed to delete product: " + err.message);
       }
+    }
+  };
+
+  const handleGoToPage = (e) => {
+    e.preventDefault();
+    const pageNum = parseInt(goToPage);
+    if (!isNaN(pageNum) && pageNum >= 1 && pageNum <= totalPages) {
+      setCurrentPage(pageNum);
+      setGoToPage("");
+    } else {
+      alert(`Please enter a valid page number between 1 and ${totalPages}`);
     }
   };
 
@@ -237,7 +249,8 @@ const Products = () => {
             ))}
           </div>
         )}
-
+        <div>Hello </div>
+        <input type="text" />
         {/* Pagination — Tailwind CSS */}
         {totalPages > 1 && (
           <div className="flex justify-center items-center gap-1 mt-10 pb-8 flex-wrap">
@@ -285,6 +298,29 @@ const Products = () => {
             >
               Next →
             </button>
+
+            {/* Go To Page */}
+            <form onSubmit={handleGoToPage} className="flex items-center gap-2 ml-4">
+              <label htmlFor="go-to-page" className="text-sm font-medium text-gray-700">
+                GO TO :
+              </label>
+              <input
+                id="go-to-page"
+                type="number"
+                min="1"
+                max={totalPages}
+                value={goToPage}
+                onChange={(e) => setGoToPage(e.target.value)}
+                className="w-16 h-9 px-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                placeholder="Page"
+              />
+              <button
+                type="submit"
+                className="h-9 px-4 rounded-lg bg-gray-900 text-white text-sm font-semibold transition-colors hover:bg-gray-700 cursor-pointer"
+              >
+                Go
+              </button>
+            </form>
 
           </div>
         )}
